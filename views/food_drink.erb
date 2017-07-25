@@ -1,10 +1,12 @@
-<h3>What color are your eyes?</h3>
-
-<form method = "post" action = "eyes">
-	<input type = "text" name = "eyes">
+<h3>What is your favorite food and favorite drink?</h3>
+<h2><pre> Food          Drink</pre></h2>
+<form method = "post" action = "food_drink">
+	<input type = "text" name = "food">
+	<input type = "text" name = "drink">
 	<input type = "submit" value = "enter">
 	<input type = "hidden" name = "firstname" value = "<%=firstname%>">
 	<input type = "hidden" name = "lastname" value = "<%=lastname%>">
 	<input type = "hidden" name = "age" value = "<%=age%>">
 	<input type = "hidden" name = "hair" value = "<%=hair%>">
+	<input type = "hidden" name = "eyes" value = "<%=eyes%>">
 </form>
