@@ -1,0 +1,10 @@
+<h2><%=firstname%> <%=lastname%>, You are<%=age%> years old. Please enter your age.</h2>
+<h3>What color is your hair?</h3>
+
+<form method = "post" action = "hair">
+	<input type = "text" name = "hair">
+	<input type = "submit" value = "enter">
+	<input type = "hidden" name = "firstname" value = "<%=firstname%>">
+	<input type = "hidden" name = "lastname" value = "<%=lastname%>">
+	<input type = "hidden" name = "age" value = "<%=age%>">
+</form>
