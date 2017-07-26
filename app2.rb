@@ -1,11 +1,33 @@
 require "sinatra"
+require_relative "appfunctions.rb"
 
 get '/' do
- "hello world"
-erb :names
+ message = params[:message]
+ 	if message == "Incorrect Username or Password, please try again."
+ 		erb :login, locals:{message: message}
+ 	else blank = "please enter your username and password"
+ 		erb :login, locals:{message: blank}
+	end
 end
 
-post '/name' do
+
+
+post '/login' do
+	username = params[:username]
+	password = params[:password]
+	message = "Incorrect Username or Password, please try again."
+	if username == "jkeiffer" && password == "12345"
+		redirect '/name'
+	 else
+	 	redirect '/?message=' + message
+	end
+end
+
+get '/name' do
+	erb :names
+end
+
+post '/names' do
 	firstname = params[:firstname]
 	lastname = params[:lastname]
 #	"#your firstname is #{firstname} and your last name is #{lastname}"
@@ -107,6 +129,26 @@ post '/fnums' do
 redirect '/results?firstname=' + firstname + "&lastname=" + lastname + "&age=" + age + "&hair=" + hair + "&eyes=" + eyes + "&food=" + food + "&drink=" + drink +"&num1=" + num1 + "&num2=" + num2 + "&num3=" + num3
 end
 
+# def add(num1, num2, num3, age)
+# 	wow = num1.to_i + num2.to_i + num3.to_i
+# 	in_ten = age.to_i + 10
+
+# 	if
+# 		age.to_i > wow
+# 		"#{wow} That's lower than your age, Wow you're old! In ten years you will be #{in_ten}, that's even older!"
+# 	elsif age.to_i< wow
+# 		"#{wow} That's higher than your age, you're a young one, aren't you?"
+# 	else age.to_i == wow
+# 		"#{wow}. Same as your age,thats an odd coincidence, don't you think?" 
+# 	end
+# end
+
+# def multiply(age,wow)
+# 	age.to_i * wow
+# end
+
+
+
 get '/results' do
 	firstname = params[:firstname]
 	lastname = params[:lastname]
@@ -118,7 +160,10 @@ get '/results' do
 	num1 = params[:num1]
 	num2 = params[:num2]
 	num3 = params[:num3]
-	erb :results, locals:{firstname: firstname, lastname: lastname, age: age, hair: hair, eyes: eyes, food: food, drink: drink, num1: num1, num2: num2, num3: num3}
+	wow = num1.to_i + num2.to_i + num3.to_i
+	old_huh = add(num1, num2, num3, age)
+	multiply = multiply(age,wow)
+	erb :results, locals:{multiply: multiply, old_huh: old_huh, firstname: firstname, lastname: lastname, age: age, hair: hair, eyes: eyes, food: food, drink: drink, num1: num1, num2: num2, num3: num3}
 end
 
 post '/results' do
